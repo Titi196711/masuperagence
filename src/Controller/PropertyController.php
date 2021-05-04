@@ -3,11 +3,11 @@ namespace App\Controller;
 
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
 class PropertyController extends AbstractController
@@ -16,7 +16,7 @@ class PropertyController extends AbstractController
      * @Route("/biens", name="property.index")
      * @return Response
      */
-    public function index(PropertyRepository $repository, EntityManagerInterface $em): Response
+    public function index(PropertyRepository $repository, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         // $property = new Property();
         // $property->setTitle('Mon premier bien')
@@ -38,13 +38,18 @@ class PropertyController extends AbstractController
      
         // $repository = $this->getDoctrine()->getRepository(Property::class);
 
-        
         //dd($proprietes);
 
+        $properties = $paginator->paginate(
+            $repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1), /*page number*/
+            12
+            );
+        
      return $this->render('property/index.html.twig',
         [
-        'current_menu' => 'properties'
-        
+        'current_menu' => 'properties',
+        'properties' => $properties
         ]
         );
     }
