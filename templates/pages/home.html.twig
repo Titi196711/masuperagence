@@ -20,9 +20,11 @@
 								<h5 class="card-title">
 									<a href='{{ path('property.show', {id: propriete.id, slug: propriete.slug}) }}'>{{ propriete.title }}</a>
 								</h5>
-                <p class="card-text">
-                {{ propriete.city }} ({{propriete.postalcode}})</p>
-                <div class="text-primary" style='font-weight: bold; font-size: 2rem;'>{{ propriete.price | number_format(0, '{ }', ' ')}} €</div>
+								<p class="card-text">
+									{{ propriete.city }}
+									({{propriete.postalcode}})</p>
+								<div class="text-primary" style='font-weight: bold; font-size: 2rem;'>{{ propriete.price | number_format(0, '{ }', ' ')}}
+									€</div>
 							</div>
 						</div>
 					</div>
