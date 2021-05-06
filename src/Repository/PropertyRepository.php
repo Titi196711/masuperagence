@@ -6,6 +6,7 @@ use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use App\Entity\PropertySearch;
 
 /**
  * @method Property|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,13 +53,24 @@ class PropertyRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(PropertySearch $search): Query
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.sold = false')
-            ->getQuery()
-            // ->getResult()
-        ;
+        // return $this->createQueryBuilder('p')
+        //     ->andWhere('p.sold = false')
+        //     ->getQuery()
+        //     // ->getResult()
+        // ;
+        $query = $this->createQueryBuilder('p');
+
+        if ($search->getMaxPrice()){
+            $query = $query -> andwhere('p.price <= :maxprice');
+            $query->setParameter('maxprice', $search->getMaxPrice());
+        }
+        if ($search->getMinSurface()){
+            $query = $query -> andwhere('p.surface >= :minsurface');
+            $query->setParameter('minsurface', $search->getMinSurface());
+        }
+            return $query->getQuery();
     }
 
     /**
@@ -69,11 +81,8 @@ class PropertyRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.sold = false')
             ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults(8)
+            ->setMaxResults(9)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-
-
 }

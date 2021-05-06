@@ -12,24 +12,13 @@
 
 		<div class='container'>
 			<h2>Les derniers biens</h2>
-			<div class="row flex">
-				{% for propriete in proprietes %}
-					<div class="col-3">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">
-									<a href='{{ path('property.show', {id: propriete.id, slug: propriete.slug}) }}'>{{ propriete.title }}</a>
-								</h5>
-								<p class="card-text">
-									{{ propriete.city }}
-									({{propriete.postalcode}})</p>
-								<div class="text-primary" style='font-weight: bold; font-size: 2rem;'>{{ propriete.price | number_format(0, '{ }', ' ')}}
-									€</div>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
-			</div>
+			<div class="div row">
+			{% for property in proprietes %}
+				<div class="col-md-4">
+					{% include "property/_property.html.twig" %}
+				</div>
+			{% endfor %}
+		</div>
 		</div>
 	</div>
 {% endblock %}

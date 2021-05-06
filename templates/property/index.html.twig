@@ -5,17 +5,32 @@
 {% block body %}
 	<div class="container-fluid py-5">
 
-		<h1 class="display-5 fw-bold">Voir tous nos biens</h1>
 
-		<div class="div row">
-			{% for property in properties %}
-				<div class="col-md-4">
-					{% include "property/_property.html.twig" %}
+			{{ form_start(form) }}
+			<div class="form-row row">
+				<div class="col-auto">
+					{{form_row(form.minSurface)}}
 				</div>
-			{% endfor %}
-		</div>
-		<div class="navigation d-flex flex-row justify-content-center">
-			{{ knp_pagination_render(properties) }}
-		</div>
+				<div class="col-auto">
+					{{form_row(form.maxPrice)}}
+				</div>
+				<div class="col-auto">
+					<button class="btn btn-primary">Rechercher</button>
+				</div>
+			</div>
+			{{ form_end(form) }}
+
 	</div>
-{% endblock %}
+	<h1 class="display-5 fw-bold">Voir tous nos biens</h1>
+
+	<div class="row">
+		{% for property in properties %}
+			<div class="col-md-4">
+				{% include "property/_property.html.twig" %}
+			</div>
+		{% endfor %}
+	</div>
+	<div class="navigation d-flex flex-row justify-content-center">
+		{{ knp_pagination_render(properties) }}
+	</div>
+</div>{% endblock %}
