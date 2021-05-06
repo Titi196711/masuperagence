@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 
+use App\Entity\Option;
 use App\Repository\PropertyRepository;
 use App\Entity\Property;
 use App\Form\PropertyType;
@@ -60,6 +61,9 @@ class AdminPropertyController extends AbstractController{
      */
     public function edit(Property $property, Request $request, EntityManagerInterface $em)
     {
+        // $option = new Option();
+        // $property->addOption($option);
+        
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
         
