@@ -12,3 +12,11 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 
 // start the Stimulus application
 import './bootstrap';
+
+import './js/select2.min.js';
+import './css/select2.min.css';
+
+const $ = require('jquery');
+
+$("#testtiti").css("font-size", "8rem !important");
+$("select").select2();

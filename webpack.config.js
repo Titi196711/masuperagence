@@ -14,6 +14,16 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+
+    // JS
+    .addEntry('jquery', './assets/jquery-3.6.0.min.js')
+    // .addEntry('popper', './assets/js/popper.min.js')
+    // .addEntry('bootstrap', './assets/js/bootstrap.min.js')
+
+    // CSS
+    .addStyleEntry('bootstrap_css', './assets/css/bootstrap.css')
+    .addStyleEntry('fontawesome_css', './assets/css/font-awesome.css')
+
     /*
      * ENTRY CONFIG
      *
