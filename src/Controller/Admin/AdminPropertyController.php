@@ -63,11 +63,12 @@ class AdminPropertyController extends AbstractController{
     {
         // $option = new Option();
         // $property->addOption($option);
-        
+ 
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em->flush();
             $this->addFlash('success', 'Bien modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
