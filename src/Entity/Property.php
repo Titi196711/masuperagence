@@ -111,7 +111,7 @@ class Property
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="property_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="property_image", fileNameProperty="image")
      * @var File|null
      * @Assert\Image(mimeTypes="image/jpeg")
      */

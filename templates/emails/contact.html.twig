@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ propriete.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-8">
+				<h2>Email</h2>
+				<table class="table table-striped">
+					<tr>
+						<td>Nom du bien</td>
+						<td>{{ contact.propriete.title }}</td>
+					</tr>
+					<tr>
+						<td>Prénom</td>
+						<td>{{ contact.firstname }}</td>
+					</tr>
+					<tr>
+						<td>Nom</td>
+						<td>{{ contact.lastname }}</td>
+					</tr>
+					<tr>
+						<td>Téléphone</td>
+						<td>{{ contact.phone }}</td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td>{{ contact.email }}</td>
+					</tr>
+					<tr>
+						<td>Message</td>
+						<td>{{ contact.message| nl2br }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
